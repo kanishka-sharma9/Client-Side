@@ -1,0 +1,25 @@
+<div class="row">
+
+  @if (is_loader) {
+    <div class="col text-center">
+      <button class="btn btn-primary">
+        <span class="spinner-border spinner-border-sm"></span>
+        Loading..
+      </button>
+    </div>
+  } @else {
+    @for (des of designation_list;track $index){
+      <div class="col">
+          <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">{{des.designation}}</h4>
+
+                <a href="#" class="card-link">Card link</a>
+                <a href="#" class="card-link">Another link</a>
+              </div>
+            </div>
+      </div>
+  }
+  }
+    
+</div>

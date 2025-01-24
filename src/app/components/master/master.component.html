@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col text-center">
+        <div class="btn-group">
+            <button type="button" class="btn" (click)="change_current_component_val('Roles')" [ngClass]="current_component == 'Roles' ? 'btn-success':'btn-primary'">Roles</button>
+            <button type="button" class="btn" (click)="change_current_component_val('Designation')" [ngClass]="current_component == 'Designation' ? 'btn-success':'btn-primary'">Designation</button>
+        </div>
+    </div>
+</div>
+<div class="row pt-2">
+    <div class="col" *ngIf="current_component == 'Roles'">
+        <app-roles></app-roles>
+    </div>
+    <div class="col" *ngIf="current_component == 'Designation'">
+        <app-designation></app-designation>
+    </div>
+</div>

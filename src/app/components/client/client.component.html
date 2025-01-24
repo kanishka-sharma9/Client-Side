@@ -1,0 +1,126 @@
+<!-- <ul>
+    @for (user of user_list$ | async; track $index) {
+        <li>{{user.username}}</li>    }
+</ul> -->
+<app-alert [alertType]="'warning'" [message]="'HI, You are at the client page'"></app-alert>
+<div class="row">
+    <div class="col">
+        <div class="card">
+            <div class="card-header bg-success">
+                Client List
+            </div>
+            <div class="card-body">
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-striped table-dark">
+                            <thead>
+                                <tr>
+                                    <th>sr no.</th>
+                                    <th>company name</th>
+                                    <th>person name</th>
+                                    <th>contact no.</th>
+                                    <th>city</th>
+                                    <th>action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @for (client of client_list;track $index) {
+                                    <tr>
+                                        <td>{{ $index + 1 }}</td>
+                                        <td>{{ client.companyName | uppercase }}</td>
+                                        <td>{{ client.contactPersonName }}</td>
+                                        <td>{{ client.contactNo }}</td>
+                                        <td>{{ client.city }}</td>
+                                        <td>
+                                            <button class="btn btn-success" (click)="edit_client_data(client)">Edit</button>
+                                            <button class="btn btn-danger" (click)="delete_client(client.clientId)">Delete</button>                                         
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card">
+            <div class="card-header bg-success">
+                New Client
+            </div>
+            <div class="card-body">
+                <form #form="ngForm">
+                    <div class="row">
+                        <div class="col-6">
+                            <label for="">Person name</label>
+                            <input type="text" #person_name="ngModel" minlength="5" required [(ngModel)]="client_obj.contactPersonName" class="form-control" name="contactPersonName">
+                            @if (person_name.touched){
+                                <div class="text-danger">
+                                    @if (person_name?.errors?.['required']){
+                                        <span>This is Required</span>
+                                    }
+                                    @if (person_name?.errors?.['minlength']){
+                                        <span>Min % characters required</span>
+                                    }
+                                </div>
+                            }
+                            
+                        </div>
+                        <div class="col-6">
+                            <label for="">company Name</label>
+                            <input type="text" [(ngModel)]="client_obj.companyName" class="form-control" name="companyName">
+                        </div>
+                        <div class="col-6">
+                            <label for="">contact</label>
+                            <input type="text" [(ngModel)]="client_obj.contactNo" class="form-control" name="contactNo">
+                        </div>
+                        <div class="col-6">
+                            <label for="">city</label>
+                            <input type="text" [(ngModel)]="client_obj.city" class="form-control" name="city">
+                        </div>
+                        <div class="col-6">
+                            <label for="">state</label>
+                            <input type="text" [(ngModel)]="client_obj.state" class="form-control" name="state">
+                        </div>
+                        <div class="col-6">
+                            <label for="">pincode</label>
+                            <input type="text" [(ngModel)]="client_obj.pincode" class="form-control" name="pincode">
+                        </div>
+                        <div class="col-6">
+                            <label for="">address</label>
+                            <textarea [(ngModel)]="client_obj.address" class="form-control" name="address"></textarea>
+                        </div>
+                        <div class="col-6">
+                            <label for="">employee strength</label>
+                            <input type="text" [(ngModel)]="client_obj.employeeStrength" class="form-control" name="employeeStrength">
+                        </div>
+                        <div class="col-6">
+                            <label for="">gst no.</label>
+                            <input type="text" [(ngModel)]="client_obj.gstNo" class="form-control" name="gstNo">
+                        </div>
+                        <div class="col-6">
+                            <label for="">registration no.</label>
+                            <input type="text" [(ngModel)]="client_obj.regNo" class="form-control" name="regNo">
+                        </div>
+                        <div class="row pt-3">
+                            <div class="col text-center">
+                                <app-my-button (on_btn_click)="save_client($event)"
+                                    [btn_class]="'btn btn-success'" 
+                                    [btn_text]="client_obj.clientId != 0 ? 'Update Client' : 'Save Client'">
+                                </app-my-button>
+                              
+                                <!-- <button class="btn btn-success" [disabled]="!form.valid" (click)="save_client()">
+                                    {{client_obj.clientId != 0 ? 'Update Client' : 'Save Client'}}
+                                    </button> -->
+                            </div>
+                            <div class="col text-center">
+                                <button type="reset" class="btn btn-secondary">Reset</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
